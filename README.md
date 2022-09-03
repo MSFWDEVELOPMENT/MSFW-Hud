@@ -10,6 +10,10 @@
  
  # step 3 - restart your server 
 
+ # also join our discord
+
+ # discord - https://discord.gg/V6PD44awSR
+
 ## Enjoy!
 
 # credits -
