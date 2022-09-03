@@ -1,8 +1,8 @@
--- MOWGLIUwU HUD 
+-- UwU HUD 
 -- FOR FREE
 fx_version 'cerulean'
-author 'mowgli'
-description 'MOWGLIUwU HUD'
+author 'GODS DEVELOPMENT'
+description 'UwU HUD'
 version '1.0'
 game 'gta5'
 

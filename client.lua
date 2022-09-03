@@ -1,4 +1,4 @@
--- MOWGLIUwU HUD 
+-- UwU HUD 
 -- FOR FREE
 
 -- Let's loooooop
