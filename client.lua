@@ -1,39 +1,111 @@
--- UwU HUD 
--- FOR FREE
+<html>
+    <head>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,600;1,900&display=swap" rel="stylesheet">
+        <style>
+            body {
+                width: 50%;
+                height: 50%;
+                overflow: hidden;
+                color: rgb(255, 255, 255);
+            }
+            
+            * { font-family: 'Montserrat', sans-serif; }
 
--- Let's loooooop
-Citizen.CreateThread(function()
-    while true do
-        Wait(100)
-        local ped = PlayerPedId() -- That return current ped
-        local health = math.floor(GetEntityHealth(ped) / 2) -- Get Global Entity Health w/ current ped
-        local armor = math.floor(GetPedArmour(ped)) -- Get Armor of ped
-        --print('Vie: ' .. health)
-        --print('Armure: ' .. armor)
-        if IsPauseMenuActive(true) then 
-            SendNUIMessage({
-                showHud = false
-            })
-        elseif not IsPauseMenuActive(true) then
-            SendNUIMessage({
-                showHud = true,
-                health = health,
-                armor = armor
-            })
-        end
-    end
-end)
+            .hud-container {
+                width: 300px;
+                display: flex;
+                flex-wrap: wrap;
+                flex-direction: row;
+                position: fixed;
+                bottom: 1vh;
+                right: 150vh;
+            }
 
--- You can delete this
+            .health-container,
+            .armor-container {
+                background-color: rgba(0, 0, 0, 0.568);
+                text-align: center;
+                display: flex;
+                width: 100%;
+                height: 21px;
+                margin: 0.2vh;
+                padding: 0.1vh;
+            }
 
--- Command for add armor
-RegisterCommand('armor', function(source, args, rawCommand) 
-    local ped = PlayerPedId()
-    SetPedArmour(ped, 100)
-end)
+            .health-container i,
+            .armor-container i{
+                margin:0.5vh 0.3vh 0 0.3vh;
+            }
 
--- Command for add Health
-RegisterCommand('health', function(source, args, rawCommand) 
-    local ped = PlayerPedId()
-    SetEntityHealth(ped, 200)
-end)
+            .health-status,
+            .armor-status {
+                /*background-color: rgba(255, 0, 0, 0.8);*/
+                text-align: center;
+                display: flex;
+                width: 100%;
+                margin: 0.1vh;
+                padding-top: 0.1vh;
+            }
+            
+        </style>
+    </head>
+    <body>
+        <div class="hud-container">
+            <div class="health-container">
+                <i class="fa-solid fa-heart"></i>
+                <div class="health-status"></div>
+            </div>
+            <div class="armor-container">
+                <i class="fa-solid fa-shield-halved"></i>
+                <div class="armor-status"></div>
+                <div id="ArmorText"></div>
+            </div>
+        </div>
+    </body>
+    <script>
+        window.addEventListener("message", function (event) {
+
+            let data = event.data;
+            let health = $('.health-status');
+            let armor = $('.armor-status');
+
+            if (data.showHud == true) {
+                $('body').fadeIn(100);
+            } else {
+                $('body').fadeOut(100);
+            }
+
+            if (data.health > 25) {
+                health.css({
+                    'background': 'linear-gradient(90deg, rgba(255,255,255, 0.3) ' + data.health + '%' + ' ,rgba(0, 0, 0, 0.5) 50%)'
+                });
+            } else if (data.health < 25) {
+                health.css({
+                    'background': 'linear-gradient(90deg, rgba(255,72,0,0.7) ' + data.health + '%' + ' ,rgba(0, 0, 0, 0.5) 50%)'
+                });
+            }
+
+            if (data.armor == 0) {
+                armor.text('NO ARMOR BITCH');
+                armor.css({
+                    'background': 'transparent'
+                });
+            } else if (data.armor > 25) {
+                armor.text('');
+                armor.css({
+                    'background': 'linear-gradient(90deg, rgba(0,134,255,0.7) ' + data.armor + '%' + ' ,rgba(0, 0, 0, 0.5) 50%)'
+                });
+            } else if (data.armor < 25) {
+                armor.text('');
+                armor.css({
+                    'background': 'linear-gradient(90deg, rgba(255,72,0,0.7) ' + data.armor + '%' + ' ,rgba(0, 0, 0, 0.5) 50%)'
+                });
+            }
+
+        });
+    </script>
+</html>
