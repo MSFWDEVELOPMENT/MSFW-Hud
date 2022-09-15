@@ -24,8 +24,6 @@ Citizen.CreateThread(function()
     end
 end)
 
--- You can delete this
-
 -- Command for add armor
 RegisterCommand('a', function(source, args, rawCommand) 
     local ped = PlayerPedId()
@@ -36,4 +34,10 @@ end)
 RegisterCommand('h', function(source, args, rawCommand) 
     local ped = PlayerPedId()
     SetEntityHealth(ped, 400)
+end)
+
+-- Command for kill
+RegisterCommand('kill', function(source, args, rawCommand) 
+    local ped = PlayerPedId()
+    SetEntityHealth(ped, 0)
 end)

@@ -15,14 +15,14 @@
             * { font-family: 'Montserrat', sans-serif; }
 
             .hud-container {
-                width: 300px;
+                width: 289px;
                 display: flex;
                 flex-wrap: wrap;
                 flex-direction: row;
                 position: fixed;
                 bottom: 1vh;
                 right: 150vh;
-                border: 1px solid rgba(255, 255, 255, 0.288);
+                border: 1px solid rgba(0, 0, 0, 0.288);
             } 
 
             .health-container,
@@ -34,12 +34,12 @@
                 height: 21px;
                 margin: 0.2vh;
                 padding: 0.1vh;
-                border: 1px solid rgba(255, 255, 255, 0.288);
+                border: 1px solid rgba(0, 0, 0, 0.288);
             }
 
             .health-container i,
             .armor-container i{
-                margin:0.5vh 0.3vh 0 0.3vh;
+                margin:0.8vh 0.1vh 0 0.2vh;
             }
 
             .health-status,
@@ -57,7 +57,7 @@
     <body>
         <div class="hud-container">
             <div class="health-container">
-                <i class="fa-solid fa-heart"></i>
+                <i class="fa-solid fa-heart-pulse"></i>
                 <div class="health-status"></div>
             </div>
             <div class="armor-container">
@@ -91,7 +91,7 @@
             }
 
             if (data.armor == 0) {
-                armor.text('NO ARMOR BITCH');
+                armor.text('USE ARMOR DUMB');
                 armor.css({
                     'background': 'transparent'
                 });
